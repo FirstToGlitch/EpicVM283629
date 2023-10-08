@@ -22,6 +22,7 @@ jobs:
     - run: Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "Windows@10" -Force)
     - run: Get-WindowsOptionalFeature -Online | Where-Object {$_.FeatureName -like "*Hyper-V*"}
     - name: Disable Hyper-V
+      shell: pwsh
       run: |
         Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-Offline
         Disable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V-Online
