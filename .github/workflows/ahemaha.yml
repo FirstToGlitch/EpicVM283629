@@ -17,4 +17,4 @@ jobs:
     - name: Start VNC Server
       run: sudo /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resources/kickstart -activate -configure -access -on -clientopts -setvnclegacy -vnclegacy yes -clientopts -setvncpw -vncpw PassWow20 -restart -agent -privs -all
     - name: Create Tunnel
-      run: ./ngrok/ngrok tcp 5900
+      run: ./ngrok tcp 5900
