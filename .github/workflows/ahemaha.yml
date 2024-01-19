@@ -14,11 +14,9 @@ jobs:
       run: ./ngrok authtoken $NGROK_AUTH_TOKEN
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
-    - name: Start VNC Server
-      run: brew install vino
-    - name: Configure Vino
-      run: gsettings set org.gnome.Vino require-encryption false
-    - name: Start Vino
-      run: vino-server --sm-disable
+    - name: Install FreeRDP
+      run: brew install freerdp
     - name: Create Tunnel
-      run: ./ngrok tcp 5900
+      run: ./ngrok tcp 3389
+    - name: Connect to Remote Desktop using FreeRDP
+      run: xfreerdp /v:127.0.0.1:3389 /u:runner /p:Mawc@10
