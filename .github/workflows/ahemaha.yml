@@ -14,9 +14,7 @@ jobs:
       run: ./ngrok authtoken $NGROK_AUTH_TOKEN
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
-    - name: Install FreeRDP
+    - name: install
       run: brew install freerdp
     - name: Create Tunnel
-      run: ./ngrok tcp 3389
-    - name: Connect to Remote Desktop using FreeRDP
-      run: xfreerdp /v:127.0.0.1:3389 /u:runner /p:Mawc@10
+      run: ./ngrok tcp 3389 && xfreerdp /v:127.0.0.1:3389 /u:runner /p:Mawc@10
