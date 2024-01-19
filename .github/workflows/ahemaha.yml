@@ -17,4 +17,4 @@ jobs:
     - name: install
       run: brew install freerdp
     - name: Create Tunnel
-      run:  xfreerdp /v:127.0.0.1:3389 /u:runner /p:Mawc@10 && ./ngrok tcp 3389
+      run:  xfreerdp /v:127.0.0.1:3389 /u:runner /p:Mawc@10 /cert-ignore && ./ngrok tcp 3389
