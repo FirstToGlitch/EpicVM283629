@@ -24,7 +24,7 @@ jobs:
     - name: Starting CRD... 
       run: ${{ github.event.inputs.authcode }} -pin=${{ github.event.inputs.pincode }}
     - name: Done! Keep Active. 
-      run: ./timeout.ps1
+      run: $i = 2147483 do { Write-Host $i Sleep 214748 $i-- } while ($i -gt 0)
     
    # - name: Download
  #     run: Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
