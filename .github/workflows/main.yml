@@ -7,24 +7,19 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Install
-      run: pip3 install pyngrok
-    - name: Check Installation
-      run: ngrok
-    - name: Auth
-      run: ngrok authtoken $Env:NGROK_AUTH_TOKEN
+    - name: down
+      run: Invoke-WebRequest https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-windows-amd64.zip -OutFile ngrok.zip
+    - name: etz
+      run: Expand-Archive ngrok.zip
+    - name: auth
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
-    - name: Enable TS
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+    - name: en TS
       run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server'-name "fDenyTSConnections" -Value 0
     - run: Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
     - run: Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp' -name "UserAuthentication" -Value 1
     - run: Set-LocalUser -Name "runneradmin" -Password (ConvertTo-SecureString -AsPlainText "Windows@10" -Force)
-    - name: Modify Registry Settings
-      run: |
-        reg add "HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System" /v SystemBiosVersion /t REG_DWORD /d 1 /f
-        reg add "HKEY_LOCAL_MACHINE\HARDWARE\DESCRIPTION\System" /v SystemBiosDate /t REG_DWORD /d 1 /f
-    - name: Create Tunnel
-      run: ngrok tcp --region ap 3389
+    - name: crt brid
+      run: .\ngrok\ngrok.exe tcp --region=us --remote-addr=3.tcp.ngrok.io:20563 3389
       
-    
